@@ -14,15 +14,15 @@
 
 ## - [ ] Authentication v1
 
-- [ ] Implement auth backend
+- [x] Implement auth backend
 - [ ] Implement auth frontend
 
 ## - [ ] Backend
 
-- [ ] Implement logic for getting task
-- [ ] Implement logic for creating task
-- [ ] Implement logic for editing task
-- [ ] Implement logic for deleting task
+- [x] Implement logic for getting task
+- [x] Implement logic for creating task
+- [x] Implement logic for editing task
+- [x] Implement logic for deleting task
 
 ## - [ ] Frontend
 
@@ -32,7 +32,7 @@
 
 ## - [ ] Authentication v2
 
-- [ ] Create sign-up backend
+- [x] Create sign-up backend
 - [ ] Create sign-up frontend
 
 ## - [ ] Miscellaneous
