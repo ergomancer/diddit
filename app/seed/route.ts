@@ -34,7 +34,7 @@ async function seedTasks() {
 
   await sql`CREATE TABLE IF NOT EXISTS tasks (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    user_id UUID NOT NULL,
+    userId UUID NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     status VARCHAR(255) DEFAULT "pending",
@@ -47,7 +47,7 @@ async function seedTasks() {
   const insertedTasks = await Promise.all(
     tasks.map(
       async (task) => sql`
-      INSERT INTO tasks (user_id, title, description, status, createdDate, updatedDate, dueDate)
+      INSERT INTO tasks (userId, title, description, status, createdDate, updatedDate, dueDate)
       Values (${task.userId}, ${task.title}, ${task.description}, ${task.status}, ${task.createdDate}, ${task.updatedDate}, ${task.dueDate})
       ON CONFLICT (id) DO NOTHING;
       `
