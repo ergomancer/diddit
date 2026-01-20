@@ -4,7 +4,7 @@
 
 - [x] Create seed data
 - [x] Create seed route
-- [ ] Execute seeding
+- [x] Execute seeding
 
 ## - [ ] Design frontend
 
@@ -15,7 +15,7 @@
 ## - [ ] Authentication v1
 
 - [x] Implement auth backend
-- [ ] Implement auth frontend
+- [x] Implement auth frontend
 
 ## - [ ] Backend
 
@@ -27,7 +27,7 @@
 ## - [ ] Frontend
 
 - [ ] Create dashboard screen
-- [ ] Create tasks screen
+- [x] Create tasks screen
 - [ ] Create task form
 
 ## - [ ] Authentication v2
