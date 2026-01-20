@@ -12,12 +12,22 @@ export const authConfig = {
         nextUrl.pathname.startsWith("/seed")
       );
       if (isInApp) {
-        if (isSignedIn) return true;
+        if (isSignedIn) {
+          return true;
+        }
         return false;
-      } else if (isSignedIn) {
-        return Response.redirect(new URL("/", nextUrl));
-      }
+      } else if (isSignedIn) return Response.redirect(new URL("/", nextUrl));
       return true;
+    },
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id as string;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user.id = token.id;
+      return session;
     },
   },
   providers: [],
