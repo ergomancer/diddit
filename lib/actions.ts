@@ -17,10 +17,12 @@ const sql = postgres(process.env.POSTGRES_URL!, {
 
 export async function authenticate(
   prevState: string | undefined,
-  formData: FormData
+  formData: FormData,
 ) {
   try {
+    console.log("Authenticating");
     await signIn("credentials", formData);
+    console.log("Authenticated");
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -79,7 +81,7 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
 export async function updateTask(
   prevState: TaskFormState,
   id: string,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = TaskFormSchema.safeParse({
     title: formData.get("title"),

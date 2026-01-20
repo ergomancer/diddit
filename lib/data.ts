@@ -10,20 +10,21 @@ export async function getTasks() {
   try {
     const session = await auth();
     let userId = null;
-    if (session?.user) userId = session.user.id;
-    if (userId == null) throw new LoginError("You are not logged in!");
+    if (session?.user) {
+      userId = session.user.id;
+    } else if (userId == null) throw new LoginError("You are not logged in!");
 
     const data = await sql<Task[]>`
     SELECT * FROM tasks
     WHERE userId = ${userId}
     `;
 
-    return data
+    return data;
   } catch (error) {
-    console.log(error);
-    if(error instanceof LoginError) redirect("/login");
-    return {
-      message: "Error: Failed to fetch tasks."
+    if (error instanceof LoginError) redirect("/login");
+    else {
+      console.error("An error occurred: ", error);
+      throw new Error("An error occurred. Failed to fetch tasks.");
     }
   }
 }
