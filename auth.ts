@@ -1,22 +1,9 @@
-import postgres from "postgres";
-import type { User } from "@/lib/definitions";
+import { getUser } from "./lib/data";
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { UserFormSchema } from "./lib/form-schemas";
-
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
-
-async function getUser(email: string): Promise<User | undefined> {
-  try {
-    const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
-    return user[0];
-  } catch (error) {
-    console.error("Failed to fetch user:", error);
-    throw new Error("Failed to fetch user.");
-  }
-}
 
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -34,7 +21,6 @@ export const { auth, signIn, signOut } = NextAuth({
           if (passwordsMatch) return user;
         }
 
-        console.log("Invalid credentials");
         return null;
       },
     }),

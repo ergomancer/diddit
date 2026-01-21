@@ -10,10 +10,11 @@ import { Button } from "@/ui/button";
 import { useActionState, Suspense } from "react";
 import { authenticate } from "@/lib/actions";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "/app";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
@@ -83,6 +84,12 @@ export default function LoginForm() {
           </div>
         </div>
       </form>
+      <div className="border-t">
+        <p className="text-muted-foreground">Don't have an account?</p>
+        <Link href="/signup">
+          <Button>Create an account</Button>
+        </Link>
+      </div>
     </Suspense>
   );
 }

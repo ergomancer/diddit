@@ -23,7 +23,7 @@ export type TaskFormState = {
     status?: string[];
     dueDate?: string[];
   };
-  message?: string[] | null;
+  message?: string | null;
 };
 
 export type UserFormState = {
@@ -32,5 +32,5 @@ export type UserFormState = {
     email?: string[];
     password?: string[];
   };
-  message?: string[] | null;
+  message?: string | null;
 };

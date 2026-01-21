@@ -1,15 +1,16 @@
 import { signOut } from "@/auth";
 import { Button } from "@/ui/button";
+import { auth } from "@/auth";
 
-export default function SignOut() {
-  return (
-    <form
+export default async function SignOut() {
+  const session = await auth();
+  return (session && <form
       action={async () => {
         "use server";
-        await signOut({ redirectTo: "/" });
+        await signOut({ redirectTo: "/app" });
       }}
     >
-      <Button>Sign Out</Button>
+      <Button>Log Out</Button>
     </form>
   );
 }
