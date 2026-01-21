@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Diddit from "./diddit";
 import { ModeToggle } from "@/ui/mode-toggle";
+import SignOut from "./sign-out";
 
 export default function Header() {
   return (
@@ -8,7 +9,8 @@ export default function Header() {
       <Link href={"/"}>
         <Diddit />
       </Link>
-        <ModeToggle />
+      <ModeToggle />
+      <SignOut />
     </header>
   );
 }
