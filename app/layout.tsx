@@ -3,6 +3,7 @@ import "@/ui/global.css";
 import { geistSans, geistMono } from "@/ui/fonts";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { ThemeProvider } from "@/ui/theme-provider";
 
 export const metadata: Metadata = {
   title: "Diddit",
@@ -32,13 +33,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
