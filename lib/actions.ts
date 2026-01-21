@@ -20,9 +20,7 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    console.log("Authenticating");
     await signIn("credentials", formData);
-    console.log("Authenticated");
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -74,8 +72,8 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     };
   }
 
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/app");
+  redirect("/app");
 }
 
 export async function updateTask(
@@ -113,8 +111,8 @@ export async function updateTask(
       message: "Error: Failed to update task.",
     };
   }
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/app");
+  redirect("/app");
 }
 
 export async function deleteTask(id: string) {
@@ -122,7 +120,8 @@ export async function deleteTask(id: string) {
   DELETE FROM tasks
   WHERE id=${id}
   `;
-  revalidatePath("/");
+  revalidatePath("/app");
+  redirect("/app");
 }
 
 export async function createUser(prevState: UserFormState, formData: FormData) {
@@ -153,5 +152,5 @@ export async function createUser(prevState: UserFormState, formData: FormData) {
     };
   }
 
-  redirect("/");
+  redirect("/app");
 }

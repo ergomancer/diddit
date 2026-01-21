@@ -3,6 +3,7 @@ import type { Task } from "./definitions";
 import { auth } from "@/auth";
 import { LoginError } from "./error-definitions";
 import { redirect } from "next/navigation";
+import type { User } from "@/lib/definitions";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -26,5 +27,14 @@ export async function getTasks() {
       console.error("An error occurred: ", error);
       throw new Error("An error occurred. Failed to fetch tasks.");
     }
+  }
+}
+
+export async function getUser(email: string): Promise<User | undefined> {
+  try {
+    const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
+    return user[0];
+  } catch (error) {
+    throw new Error("Failed to fetch user.");
   }
 }
