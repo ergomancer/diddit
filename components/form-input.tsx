@@ -1,22 +1,23 @@
 "use client";
 
-import { AtSignIcon, KeyRoundIcon, ContactRoundIcon } from "lucide-react";
-
-const iconClassName =
-  "pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900";
-const icon = {
-  name: <ContactRoundIcon className={iconClassName} />,
-  email: <AtSignIcon className={iconClassName} />,
-  password: <KeyRoundIcon className={iconClassName} />,
-};
-
-export default function UserFormInput({
+export default function FormInput({
   type,
+  icon = null,
+  required = true,
   minLength = 0,
+  error = true,
+  state,
 }: {
-  type: "name" | "email" | "password";
+  type: "name" | "email" | "password" | "title" | "description";
+  icon?: React.ReactNode;
+  required?: boolean;
   minLength?: number;
+  error?: boolean;
+  state?: any;
 }) {
+  let showError = false;
+  if (error && state.errors && state.errors[type]) showError = true;
+
   return (
     <div>
       <label
@@ -32,10 +33,18 @@ export default function UserFormInput({
           type={type == "name" ? "text" : type}
           name={type}
           placeholder={`Enter your ${type}`}
-          required
+          required={required}
           minLength={minLength}
         />
-        {icon[type]}
+        {icon}
+      </div>
+      <div id={`${type}-error`} aria-live="polite" aria-atomic="true">
+        {showError &&
+          state.errors[type].map((error: string) => (
+            <p className="mt-2 text-sm text-red-500" key={error}>
+              {error}
+            </p>
+          ))}
       </div>
     </div>
   );

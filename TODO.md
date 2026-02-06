@@ -28,12 +28,12 @@
 
 - [ ] Create dashboard screen
 - [x] Create tasks screen
-- [ ] Create task form
+- [x] Create task form
 
 ## - [ ] Authentication v2
 
 - [x] Create sign-up backend
-- [ ] Create sign-up frontend
+- [x] Create sign-up frontend
 
 ## - [ ] Miscellaneous
 

@@ -1,9 +1,8 @@
 import postgres from "postgres";
-import type { Task } from "./definitions";
+import type { Task, User } from "./definitions";
 import { auth } from "@/auth";
 import { LoginError } from "./error-definitions";
 import { redirect } from "next/navigation";
-import type { User } from "@/lib/definitions";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 

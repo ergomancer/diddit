@@ -1,7 +1,13 @@
 "use client";
 
-import { MessageCircleWarningIcon, ArrowRightIcon } from "lucide-react";
-import UserFormInput from "./user-form-input";
+import {
+  MessageCircleWarningIcon,
+  ArrowRightIcon,
+  ContactRoundIcon,
+  AtSignIcon,
+  KeyRoundIcon,
+} from "lucide-react";
+import FormInput from "./form-input";
 import { Button } from "@/ui/button";
 import { useActionState } from "react";
 import { createUser } from "@/lib/actions";
@@ -19,33 +25,28 @@ export default function SignupForm() {
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className="mb-3 text-2xl">Create an account</h1>
         <div className="w-full">
-          <UserFormInput type="name" />
-          <div id="name-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.name &&
-              state.errors.name.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
-          <UserFormInput type="email" />
-          <div id="email-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.email &&
-              state.errors.email.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
-          <UserFormInput type="password" minLength={6} />
-          <div id="password-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.password &&
-              state.errors.password.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
+          <FormInput
+            type="name"
+            icon={
+              <ContactRoundIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            }
+            state={state}
+          />
+          <FormInput
+            type="email"
+            icon={
+              <AtSignIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            }
+            state={state}
+          />
+          <FormInput
+            type="password"
+            icon={
+              <KeyRoundIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            }
+            minLength={6}
+            state={state}
+          />
         </div>
         <div
           className="flex h-8 items-end space-x-1"

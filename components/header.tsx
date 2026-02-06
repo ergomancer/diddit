@@ -2,6 +2,7 @@ import Link from "next/link";
 import Diddit from "./diddit";
 import { ModeToggle } from "@/ui/mode-toggle";
 import SignOut from "./sign-out";
+import AddTaskButton from "./add-task-button";
 
 export default function Header() {
   return (
@@ -9,6 +10,7 @@ export default function Header() {
       <Link href={"/app"}>
         <Diddit />
       </Link>
+      <AddTaskButton />
       <ModeToggle />
       <SignOut />
     </header>

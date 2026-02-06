@@ -19,6 +19,7 @@ const tasks = [
     userId: "410544b2-4001-4271-9855-fec4b6a6442a",
     title: "Seed",
     description: "Create seed data; Create seed route;",
+    priority: "low",
     status: "completed",
   },
   {
@@ -26,6 +27,7 @@ const tasks = [
     userId: "13D07535-C59E-4157-A011-F8D2EF4E0CBB",
     title: "Design the frontend",
     description: "Discuss the features; Create a design; Provide assets;",
+    priority: "medium",
     status: "pending",
   },
   {
@@ -34,6 +36,7 @@ const tasks = [
     title: "Implement authentication logic",
     description:
       "Implement the authentication backend; Implement the authentication frontend;",
+    priority: "high",
     status: "completed",
   },
 ];
