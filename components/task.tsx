@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -43,7 +41,7 @@ export default function Task({ task }: { task: Task }) {
             <CardTitle>{task.title}</CardTitle>
             <CardDescription>
               <div className="flex gap-1 justify-start">
-                <Badge className="rounded-full">{task.status}</Badge>
+                <Badge className="rounded-full">{task.priority}</Badge>
                 <Badge className="rounded-full">{task.status}</Badge>
               </div>
             </CardDescription>
@@ -78,7 +76,7 @@ export default function Task({ task }: { task: Task }) {
           <DialogDescription />
         </DialogHeader>
         <div className="flex gap-1 justify-start">
-          <Badge className="rounded-full">{task.status}</Badge>
+          <Badge className="rounded-full">{task.priority}</Badge>
           <Badge className="rounded-full">{task.status}</Badge>
         </div>
         <p>{task.description}</p>

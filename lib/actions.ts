@@ -39,6 +39,7 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     title: formData.get("title"),
     description: formData.get("description"),
     status: formData.get("status"),
+    priority: formData.get("priority"),
     dueDate: formData.get("dueDate"),
   });
 
@@ -49,7 +50,8 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     };
   }
 
-  const { title, description, status, dueDate } = validatedFields.data;
+  const { title, description, status, priority, dueDate } =
+    validatedFields.data;
 
   const createdDate = new Date().toISOString();
   const updatedDate = createdDate;
@@ -61,8 +63,8 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     if (userId == null) throw new LoginError("You are not logged in!");
 
     await sql`
-    INSERT INTO tasks (userId, title, description, status, createdDate, updatedDate, dueDate)
-    VALUES (${userId}, ${title}, ${description}, ${status}, ${createdDate}, ${updatedDate}, ${dueDate})
+    INSERT INTO tasks (userId, title, description, status, priority, createdDate, updatedDate, dueDate)
+    VALUES (${userId}, ${title}, ${description}, ${status}, ${priority}, ${createdDate}, ${updatedDate}, ${dueDate})
     `;
   } catch (error) {
     console.log(error);
@@ -85,6 +87,7 @@ export async function updateTask(
     title: formData.get("title"),
     description: formData.get("description"),
     status: formData.get("status"),
+    priority: formData.get("priority"),
     dueDate: formData.get("dueDate"),
   });
 
@@ -95,14 +98,15 @@ export async function updateTask(
     };
   }
 
-  const { title, description, status, dueDate } = validatedFields.data;
+  const { title, description, status, priority, dueDate } =
+    validatedFields.data;
 
   const updatedDate = new Date().toISOString();
 
   try {
     await sql`
     UPDATE tasks
-    SET title = ${title}, description=${description}, status=${status}, dueDate=${dueDate}, updatedDate=${updatedDate}
+    SET title = ${title}, description=${description}, status=${status}, priority=${priority}, dueDate=${dueDate}, updatedDate=${updatedDate}
     WHERE id=${id}
     `;
   } catch (error) {

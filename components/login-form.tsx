@@ -1,7 +1,12 @@
 "use client";
 
-import { MessageCircleWarningIcon, ArrowRightIcon } from "lucide-react";
-import UserFormInput from "@/components/user-form-input";
+import {
+  MessageCircleWarningIcon,
+  ArrowRightIcon,
+  AtSignIcon,
+  KeyRoundIcon,
+} from "lucide-react";
+import FormInput from "@/components/form-input";
 import { Button } from "@/ui/button";
 import { useActionState, Suspense } from "react";
 import { authenticate } from "@/lib/actions";
@@ -20,8 +25,21 @@ export default function LoginForm() {
         <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
           <h1 className="mb-3 text-2xl">Please log in to continue.</h1>
           <div className="w-full">
-            <UserFormInput type="email" />
-            <UserFormInput type="password" minLength={6} />
+            <FormInput
+              type="email"
+              icon={
+                <AtSignIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              }
+              error={false}
+            />
+            <FormInput
+              type="password"
+              icon={
+                <KeyRoundIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              }
+              minLength={6}
+              error={false}
+            />
           </div>
           <input type="hidden" name="redirectTo" value={callbackUrl} />
           <Button className="mt-4 w-full" aria-disabled={isPending}>

@@ -38,9 +38,10 @@ async function seedTasks() {
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     status VARCHAR(255),
+    priority VARCHAR(255),
     createdDate TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedDate TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    dueDate TIMESTAMPTZ
+    dueDate DATE
   );
   `;
 
@@ -48,7 +49,7 @@ async function seedTasks() {
     tasks.map(
       async (task) => sql`
       INSERT INTO tasks (userId, title, description, status)
-      VALUES (${task.userId}, ${task.title}, ${task.description}, ${task.status})
+      VALUES (${task.userId}, ${task.title}, ${task.description}, ${task.status}, ${task.priority})
       ON CONFLICT (id) DO NOTHING;
       `,
     ),
