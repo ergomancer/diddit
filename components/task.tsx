@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -48,25 +50,16 @@ export default function Task({ task }: { task: Task }) {
           </CardHeader>
           <CardContent>
             {task.description}
-            {!task.dueDate ? null : (
+            {!task.duedate ? null : (
               <div className="flex gap-1">
                 <TimerIcon />
-                {new Date(task.dueDate).toLocaleDateString()}
-                {new Date(task.dueDate).toLocaleTimeString()}
+                {new Date(task.duedate).toLocaleDateString()}
               </div>
             )}
           </CardContent>
           <CardFooter className="border-t text-muted-foreground text-xs flex flex-col items-start">
-            <p>{`Created at: ${new Date(
-              task.createdDate as string,
-            ).toLocaleDateString()}\t${new Date(
-              task.createdDate as string,
-            ).toLocaleTimeString()}`}</p>
-            <p>{`Updated at: ${new Date(
-              task.updatedDate as string,
-            ).toLocaleDateString()}\t${new Date(
-              task.updatedDate as string,
-            ).toLocaleTimeString()}`}</p>
+            <p>{`Created at: ${new Date(task.createddate).toLocaleDateString()}\t${new Date(task.createddate).toLocaleTimeString()}`}</p>
+            <p>{`Updated at: ${new Date(task.updateddate).toLocaleDateString()}\t${new Date(task.updateddate).toLocaleTimeString()}`}</p>
           </CardFooter>
         </Card>
       </DialogTrigger>
@@ -80,11 +73,10 @@ export default function Task({ task }: { task: Task }) {
           <Badge className="rounded-full">{task.status}</Badge>
         </div>
         <p>{task.description}</p>
-        {!task.dueDate ? null : (
+        {!task.duedate ? null : (
           <div className="flex gap-1">
             <TimerIcon />
-            {new Date(task.dueDate).toLocaleDateString()}
-            {new Date(task.dueDate).toLocaleTimeString()}
+            {new Date(task.duedate).toLocaleDateString()}
           </div>
         )}
         <DialogFooter>

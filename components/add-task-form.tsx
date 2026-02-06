@@ -25,11 +25,11 @@ export default function AddTaskForm() {
       <FormSelect type="priority" state={state} />
       <FormSelect type="status" state={state} />
       <div>
-        <label htmlFor="dueDate">Due Date</label>
-        <input id="dueDate" type="date" name="dueDate" />
-        <div id={`dueDate-error`} aria-live="polite" aria-atomic="true">
-          {state.errors?.dueDate &&
-            state.errors.dueDate.map((error: string) => (
+        <label htmlFor="duedate">Due Date</label>
+        <input id="duedate" type="date" name="duedate" />
+        <div id={`duedate-error`} aria-live="polite" aria-atomic="true">
+          {state.errors?.duedate &&
+            state.errors.duedate.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>

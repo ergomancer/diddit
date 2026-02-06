@@ -5,7 +5,7 @@ export const TaskFormSchema = z.object({
   description: z.string(),
   status: z.enum(["pending", "ongoing", "completed"]).default("pending"),
   priority: z.enum(["low", "medium", "high"]).default("low"),
-  dueDate: z.string(),
+  duedate: z.string(),
 });
 
 export const UserFormSchema = z.object({
