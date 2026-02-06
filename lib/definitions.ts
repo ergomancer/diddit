@@ -12,9 +12,9 @@ export type Task = {
   description: string;
   status: "pending" | "ongoing" | "completed";
   priority: "low" | "medium" | "high";
-  createdDate: string;
-  updatedDate: string;
-  dueDate: string;
+  createddate: string;
+  updateddate: string;
+  duedate: string;
 };
 
 export type TaskFormState = {
@@ -23,7 +23,7 @@ export type TaskFormState = {
     description?: string[];
     status?: string[];
     priority?: string[];
-    dueDate?: string[];
+    duedate?: string[];
   };
   message?: string | null;
 };

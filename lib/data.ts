@@ -16,7 +16,7 @@ export async function getTasks() {
 
     const data = await sql<Task[]>`
     SELECT * FROM tasks
-    WHERE userId = ${userId}
+    WHERE userid = ${userId}
     `;
 
     return data;

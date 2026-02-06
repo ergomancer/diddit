@@ -40,7 +40,7 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     description: formData.get("description"),
     status: formData.get("status"),
     priority: formData.get("priority"),
-    dueDate: formData.get("dueDate"),
+    duedate: formData.get("dueDate"),
   });
 
   if (!validatedFields.success) {
@@ -50,21 +50,21 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
     };
   }
 
-  const { title, description, status, priority, dueDate } =
+  const { title, description, status, priority, duedate } =
     validatedFields.data;
 
-  const createdDate = new Date().toISOString();
-  const updatedDate = createdDate;
+  const createddate = new Date().toISOString();
+  const updateddate = createddate;
 
   try {
     const session = await auth();
-    let userId = null;
-    if (session?.user) userId = session.user.id;
-    if (userId == null) throw new LoginError("You are not logged in!");
+    let userid = null;
+    if (session?.user) userid = session.user.id;
+    if (userid == null) throw new LoginError("You are not logged in!");
 
     await sql`
-    INSERT INTO tasks (userId, title, description, status, priority, createdDate, updatedDate, dueDate)
-    VALUES (${userId}, ${title}, ${description}, ${status}, ${priority}, ${createdDate}, ${updatedDate}, ${dueDate})
+    INSERT INTO tasks (userid, title, description, status, priority, createddate, updateddate, duedate)
+    VALUES (${userid}, ${title}, ${description}, ${status}, ${priority}, ${createddate}, ${updateddate}, ${duedate})
     `;
   } catch (error) {
     console.log(error);
@@ -88,7 +88,7 @@ export async function updateTask(
     description: formData.get("description"),
     status: formData.get("status"),
     priority: formData.get("priority"),
-    dueDate: formData.get("dueDate"),
+    duedate: formData.get("dueDate"),
   });
 
   if (!validatedFields.success) {
@@ -98,15 +98,15 @@ export async function updateTask(
     };
   }
 
-  const { title, description, status, priority, dueDate } =
+  const { title, description, status, priority, duedate } =
     validatedFields.data;
 
-  const updatedDate = new Date().toISOString();
+  const updateddate = new Date().toISOString();
 
   try {
     await sql`
     UPDATE tasks
-    SET title = ${title}, description=${description}, status=${status}, priority=${priority}, dueDate=${dueDate}, updatedDate=${updatedDate}
+    SET title = ${title}, description=${description}, status=${status}, priority=${priority}, duedate=${duedate}, updateddate=${updateddate}
     WHERE id=${id}
     `;
   } catch (error) {
