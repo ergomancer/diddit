@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Badge } from "@/ui/badge";
-import { TimerIcon, Trash2Icon } from "lucide-react";
+import { PenIcon, TimerIcon, Trash2Icon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,7 @@ import {
   DialogTrigger,
   DialogDescription,
   DialogFooter,
+  DialogClose,
 } from "@/ui/dialog";
 import { Button } from "@/ui/button";
 import {
@@ -33,6 +34,7 @@ import {
 } from "@/ui/alert-dialog";
 import type { Task } from "@/lib/definitions";
 import { deleteTask } from "@/lib/actions";
+import EditTaskForm from "./edit-task-form";
 
 export default function Task({ task }: { task: Task }) {
   return (
@@ -81,6 +83,20 @@ export default function Task({ task }: { task: Task }) {
           )}
         </DialogDescription>
         <DialogFooter>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-blue-500">
+                <PenIcon className="size-5" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Edit Task</DialogTitle>
+                <DialogClose />
+              </DialogHeader>
+              <EditTaskForm task={task} />
+            </DialogContent>
+          </Dialog>
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant="ghost" size={"icon"} className="text-red-500">

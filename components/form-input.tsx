@@ -7,6 +7,7 @@ export default function FormInput({
   minLength = 0,
   error = true,
   state,
+  defaultValue,
 }: {
   type: "name" | "email" | "password" | "title" | "description";
   icon?: React.ReactNode;
@@ -14,6 +15,7 @@ export default function FormInput({
   minLength?: number;
   error?: boolean;
   state?: any;
+  defaultValue?: string;
 }) {
   let showError = false;
   if (error && state.errors && state.errors[type]) showError = true;
@@ -35,6 +37,7 @@ export default function FormInput({
           placeholder={`Enter your ${type}`}
           required={required}
           minLength={minLength}
+          defaultValue={defaultValue}
         />
         {icon}
       </div>
