@@ -3,9 +3,11 @@
 export default function FormSelect({
   type,
   state,
+  defaultValue,
 }: {
   type: "priority" | "status";
-  state: any;
+  state?: any;
+  defaultValue?: string;
 }) {
   const options = {
     status: ["pending", "ongoing", "completed"],
@@ -13,7 +15,7 @@ export default function FormSelect({
   };
 
   let showError = false;
-  if (state.errors && state.errors[type]) showError = true;
+  if (state && state.errors && state.errors[type]) showError = true;
 
   return (
     <fieldset>
@@ -26,7 +28,15 @@ export default function FormSelect({
             type="radio"
             id={option}
             name={type}
-            defaultChecked={option == "low" || option == "pending"}
+            defaultChecked={
+              defaultValue
+                ? option == defaultValue
+                  ? true
+                  : false
+                : option == "low" || option == "pending"
+                  ? true
+                  : false
+            }
             value={option}
           />
           <label htmlFor={option}>

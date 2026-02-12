@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Badge } from "@/ui/badge";
-import { TimerIcon, Trash2Icon } from "lucide-react";
+import { PenIcon, TimerIcon, Trash2Icon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,7 @@ import {
   DialogTrigger,
   DialogDescription,
   DialogFooter,
+  DialogClose,
 } from "@/ui/dialog";
 import { Button } from "@/ui/button";
 import {
@@ -33,6 +34,7 @@ import {
 } from "@/ui/alert-dialog";
 import type { Task } from "@/lib/definitions";
 import { deleteTask } from "@/lib/actions";
+import EditTaskForm from "./edit-task-form";
 
 export default function Task({ task }: { task: Task }) {
   return (
@@ -41,45 +43,60 @@ export default function Task({ task }: { task: Task }) {
         <Card>
           <CardHeader className="border-b">
             <CardTitle>{task.title}</CardTitle>
-            <CardDescription>
-              <div className="flex gap-1 justify-start">
-                <Badge className="rounded-full">{task.priority}</Badge>
-                <Badge className="rounded-full">{task.status}</Badge>
-              </div>
-            </CardDescription>
+            <div className="flex gap-1 justify-start">
+              <Badge className="rounded-full">{task.priority}</Badge>
+              <Badge className="rounded-full">{task.status}</Badge>
+            </div>
           </CardHeader>
           <CardContent>
-            {task.description}
-            {!task.duedate ? null : (
-              <div className="flex gap-1">
-                <TimerIcon />
-                {new Date(task.duedate).toLocaleDateString()}
-              </div>
-            )}
+            <CardDescription>
+              <span>{task.description}</span>
+              {!task.duedate ? null : (
+                <span className="flex gap-1">
+                  <TimerIcon />
+                  {new Date(task.duedate).toLocaleDateString()}
+                </span>
+              )}
+            </CardDescription>
           </CardContent>
           <CardFooter className="border-t text-muted-foreground text-xs flex flex-col items-start">
-            <p>{`Created at: ${new Date(task.createddate).toLocaleDateString()}\t${new Date(task.createddate).toLocaleTimeString()}`}</p>
-            <p>{`Updated at: ${new Date(task.updateddate).toLocaleDateString()}\t${new Date(task.updateddate).toLocaleTimeString()}`}</p>
+            <span>{`Created at: ${new Date(task.createddate).toLocaleDateString()}\t${new Date(task.createddate).toLocaleTimeString()}`}</span>
+            <span>{`Updated at: ${new Date(task.updateddate).toLocaleDateString()}\t${new Date(task.updateddate).toLocaleTimeString()}`}</span>
           </CardFooter>
         </Card>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{task.title}</DialogTitle>
-          <DialogDescription />
         </DialogHeader>
-        <div className="flex gap-1 justify-start">
-          <Badge className="rounded-full">{task.priority}</Badge>
-          <Badge className="rounded-full">{task.status}</Badge>
-        </div>
-        <p>{task.description}</p>
-        {!task.duedate ? null : (
-          <div className="flex gap-1">
-            <TimerIcon />
-            {new Date(task.duedate).toLocaleDateString()}
-          </div>
-        )}
+        <DialogDescription>
+          <span className="flex gap-1 justify-start">
+            <Badge className="rounded-full">{task.priority}</Badge>
+            <Badge className="rounded-full">{task.status}</Badge>
+          </span>
+          <span>{task.description}</span>
+          {!task.duedate ? null : (
+            <span className="flex gap-1">
+              <TimerIcon />
+              {new Date(task.duedate).toLocaleDateString()}
+            </span>
+          )}
+        </DialogDescription>
         <DialogFooter>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-blue-500">
+                <PenIcon className="size-5" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Edit Task</DialogTitle>
+                <DialogClose />
+              </DialogHeader>
+              <EditTaskForm task={task} />
+            </DialogContent>
+          </Dialog>
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant="ghost" size={"icon"} className="text-red-500">

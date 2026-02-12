@@ -79,27 +79,16 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
 }
 
 export async function updateTask(
-  prevState: TaskFormState,
   id: string,
   formData: FormData,
 ) {
-  const validatedFields = TaskFormSchema.safeParse({
+  const { title, description, status, priority, duedate } = TaskFormSchema.parse({
     title: formData.get("title"),
     description: formData.get("description"),
     status: formData.get("status"),
     priority: formData.get("priority"),
-    duedate: formData.get("dueDate"),
+    duedate: formData.get("duedate"),
   });
-
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing fields. Failed to update task.",
-    };
-  }
-
-  const { title, description, status, priority, duedate } =
-    validatedFields.data;
 
   const updateddate = new Date().toISOString();
 
