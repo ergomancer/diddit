@@ -2,7 +2,6 @@
 
 import { updateTask } from "@/lib/actions";
 import { Task } from "@/lib/definitions";
-import { useActionState } from "react";
 import FormInput from "./form-input";
 import { ArrowRightIcon, MessageCircleWarningIcon } from "lucide-react";
 import { Button } from "@/ui/button";
@@ -11,7 +10,7 @@ import FormSelect from "./form-select";
 export default function EditTaskForm({ task }: { task: Task }) {
   const updateTaskWithId = updateTask.bind(null, task.id);
   return (
-    <form action={updateTaskWithId}>
+    <form action={updateTaskWithId as any}>
       <FormInput
         type="title"
         defaultValue={task ? task.title : undefined}
