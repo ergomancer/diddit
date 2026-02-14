@@ -22,15 +22,12 @@ export default function FormInput({
 
   return (
     <div>
-      <label
-        className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-        htmlFor={type}
-      >
+      <label className="mb-3 mt-5 block text-xs font-medium" htmlFor={type}>
         {type.charAt(0).toUpperCase() + type.slice(1)}
       </label>
       <div className="relative">
         <input
-          className="peer block w-full rounded-md border border-gray-200 py-2.25 pl-10 text-sm outline-2 placeholder:text-gray-500"
+          className="peer block w-full rounded-md border py-2.25 pl-10 text-sm outline-2 placeholder:text-muted-foreground"
           id={type}
           type={type == "name" ? "text" : type}
           name={type}

@@ -2,9 +2,9 @@
 
 import {
   MessageCircleWarningIcon,
-  ArrowRightIcon,
   AtSignIcon,
   KeyRoundIcon,
+  LogInIcon,
 } from "lucide-react";
 import FormInput from "@/components/form-input";
 import { Button } from "@/ui/button";
@@ -21,29 +21,24 @@ export default function LoginForm() {
   );
   return (
     <form action={formAction} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+      <div className="rounded-lg px-6 pb-4 pt-8 w-full lg:w-lg">
         <h1 className="mb-3 text-2xl">Please log in to continue.</h1>
-        <div className="w-full">
-          <FormInput
-            type="email"
-            icon={
-              <AtSignIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-            }
-            error={false}
-          />
-          <FormInput
-            type="password"
-            icon={
-              <KeyRoundIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-            }
-            minLength={6}
-            error={false}
-          />
-        </div>
+        <FormInput
+          type="email"
+          icon={
+            <AtSignIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2" />
+          }
+          error={false}
+        />
+        <FormInput
+          type="password"
+          icon={
+            <KeyRoundIcon className="pointer-events-none absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2" />
+          }
+          minLength={6}
+          error={false}
+        />
         <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
         <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"
@@ -56,6 +51,9 @@ export default function LoginForm() {
             </>
           )}
         </div>
+        <Button variant="outline" className="mt-4" aria-disabled={isPending}>
+          Log in <LogInIcon className="ml-auto h-5 w-5" />
+        </Button>
       </div>
     </form>
   );

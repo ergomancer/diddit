@@ -37,6 +37,16 @@ import { deleteTask } from "@/lib/actions";
 import EditTaskForm from "./edit-task-form";
 
 export default function Task({ task }: { task: Task }) {
+  const priorityColors = {
+    low: "bg-green-500",
+    medium: "bg-yellow-500",
+    high: "bg-red-500",
+  };
+  const statusColors = {
+    pending: "bg-blue-500",
+    ongoing: "bg-orange-500",
+    completed: "bg-gray-500",
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -44,15 +54,21 @@ export default function Task({ task }: { task: Task }) {
           <CardHeader className="border-b">
             <CardTitle>{task.title}</CardTitle>
             <div className="flex gap-1 justify-start">
-              <Badge className="rounded-full">{task.priority}</Badge>
-              <Badge className="rounded-full">{task.status}</Badge>
+              <Badge
+                className={`rounded-full ${priorityColors[task.priority]}`}
+              >
+                {task.priority}
+              </Badge>
+              <Badge className={`rounded-full ${statusColors[task.status]}`}>
+                {task.status}
+              </Badge>
             </div>
           </CardHeader>
           <CardContent>
             <CardDescription>
               <span>{task.description}</span>
               {!task.duedate ? null : (
-                <span className="flex gap-1">
+                <span className="flex gap-1 items-center">
                   <TimerIcon />
                   {new Date(task.duedate).toLocaleDateString()}
                 </span>
@@ -66,23 +82,28 @@ export default function Task({ task }: { task: Task }) {
         </Card>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="border-b">
           <DialogTitle>{task.title}</DialogTitle>
+          <DialogClose />
         </DialogHeader>
-        <DialogDescription>
+        <DialogDescription className="flex flex-col gap-3">
           <span className="flex gap-1 justify-start">
-            <Badge className="rounded-full">{task.priority}</Badge>
-            <Badge className="rounded-full">{task.status}</Badge>
+            <Badge className={`rounded-full ${priorityColors[task.priority]}`}>
+              {task.priority}
+            </Badge>
+            <Badge className={`rounded-full ${statusColors[task.status]}`}>
+              {task.status}
+            </Badge>
           </span>
           <span>{task.description}</span>
           {!task.duedate ? null : (
-            <span className="flex gap-1">
+            <span className="flex gap-1 items-center">
               <TimerIcon />
               {new Date(task.duedate).toLocaleDateString()}
             </span>
           )}
         </DialogDescription>
-        <DialogFooter>
+        <DialogFooter className="flex justify-end border-t items-center">
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="ghost" size="icon" className="text-blue-500">
@@ -106,11 +127,11 @@ export default function Task({ task }: { task: Task }) {
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  this task and permanently remove its data.
-                </AlertDialogDescription>
               </AlertDialogHeader>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete this
+                task and permanently remove its data.
+              </AlertDialogDescription>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
