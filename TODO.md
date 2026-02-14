@@ -1,6 +1,6 @@
 # Roadmap
 
-## - [ ] Seed
+## - [x] Seed
 
 - [x] Create seed data
 - [x] Create seed route
@@ -12,28 +12,35 @@
 - [ ] Design frontend
 - [ ] Get assets
 
-## - [ ] Authentication v1
+## - [x] Authentication v1
 
 - [x] Implement auth backend
 - [x] Implement auth frontend
+- [x] Create sign-up backend
+- [x] Create sign-up frontend
 
-## - [ ] Backend
+## - [x] Backend
 
 - [x] Implement logic for getting task
 - [x] Implement logic for creating task
 - [x] Implement logic for editing task
 - [x] Implement logic for deleting task
 
-## - [ ] Frontend
+## - [x] Frontend
 
-- [ ] Create dashboard screen
 - [x] Create tasks screen
 - [x] Create task form
 
-## - [ ] Authentication v2
+## - [ ] v1.0
 
-- [x] Create sign-up backend
-- [x] Create sign-up frontend
+- [ ] Fix the Add Task & Sign-up (& log-in!?) Error pre-showing
+- [ ] Fix Edit Task duedate not loading from current task
+
+## - [ ] >v1.0
+
+- [ ] Error in edit task
+- [ ] Dashboard screen
+- [ ] Pagination
 
 ## - [ ] Miscellaneous
 

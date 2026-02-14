@@ -17,11 +17,8 @@ export default async function AddTaskButton() {
     session && (
       <Dialog>
         <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            className="fixed bottom-10 lg:bottom-15 2xl:bottom-20 right-2 lg:right-5 2xl:right-8 rounded-full size-12.5 lg:size-15 2xl:size-17.5 bg-rose-500/50 dark:bg-rose-500/50 backdrop-blur-sm"
-          >
-            <PlusIcon className="size-7.5 lg:size-10 2xl:size-12.5 stroke-2" />
+          <Button variant="ghost" asChild size="icon">
+            <PlusIcon className="size-8 lg:size-10 2xl:size-12 stroke-2" />
           </Button>
         </DialogTrigger>
         <DialogContent>

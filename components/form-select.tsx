@@ -1,5 +1,7 @@
 "use client";
 
+import { Badge } from "@/ui/badge";
+
 export default function FormSelect({
   type,
   state,
@@ -10,20 +12,28 @@ export default function FormSelect({
   defaultValue?: string;
 }) {
   const options = {
-    status: ["pending", "ongoing", "completed"],
-    priority: ["low", "medium", "high"],
+    status: [
+      ["pending", "bg-blue-500"],
+      ["ongoing", "bg-orange-500"],
+      ["completed", "bg-gray-500"],
+    ],
+    priority: [
+      ["low", "bg-green-500"],
+      ["medium", "bg-yellow-500"],
+      ["high", "bg-red-500"],
+    ],
   };
 
   let showError = false;
   if (state && state.errors && state.errors[type]) showError = true;
 
   return (
-    <fieldset>
-      <legend className="mb-3 mt-5 block text-xs font-medium text-gray-900">
+    <fieldset className="border mt-5 mb-3 p-2">
+      <legend className="mb-3 mt-5 block text-xs font-medium">
         {type.charAt(0).toUpperCase() + type.slice(1)}
       </legend>
-      {options[type].map((option) => (
-        <div key={option}>
+      {options[type].map(([option, color]) => (
+        <div key={option} className="p-1 flex justify-start items-center gap-2">
           <input
             type="radio"
             id={option}
@@ -39,8 +49,10 @@ export default function FormSelect({
             }
             value={option}
           />
-          <label htmlFor={option}>
-            {option.charAt(0).toUpperCase() + option.slice(1)}
+          <label htmlFor={option} className="font-medium text-xs">
+            <Badge className={`rounded-full ${color}`}>
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </Badge>
           </label>
         </div>
       ))}
