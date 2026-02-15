@@ -14,7 +14,7 @@ import { createUser } from "@/lib/actions";
 import { UserFormState } from "@/lib/definitions";
 
 export default function SignupForm() {
-  const initialState: UserFormState = { message: null, errors: {} };
+  const initialState: UserFormState = {};
   const [state, formAction, isPending] = useActionState(
     createUser,
     initialState,
