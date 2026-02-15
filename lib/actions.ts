@@ -78,17 +78,15 @@ export async function createTask(prevState: TaskFormState, formData: FormData) {
   redirect("/app");
 }
 
-export async function updateTask(
-  id: string,
-  formData: FormData,
-) {
-  const { title, description, status, priority, duedate } = TaskFormSchema.parse({
-    title: formData.get("title"),
-    description: formData.get("description"),
-    status: formData.get("status"),
-    priority: formData.get("priority"),
-    duedate: formData.get("duedate"),
-  });
+export async function updateTask(id: string, formData: FormData) {
+  const { title, description, status, priority, duedate } =
+    TaskFormSchema.parse({
+      title: formData.get("title"),
+      description: formData.get("description"),
+      status: formData.get("status"),
+      priority: formData.get("priority"),
+      duedate: formData.get("duedate"),
+    });
 
   const updateddate = new Date().toISOString();
 

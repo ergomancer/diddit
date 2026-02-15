@@ -31,11 +31,6 @@
 - [x] Create tasks screen
 - [x] Create task form
 
-## - [ ] v1.0
-
-- [ ] Fix the Add Task & Sign-up (& log-in!?) Error pre-showing
-- [ ] Fix Edit Task duedate not loading from current task
-
 ## - [ ] >v1.0
 
 - [ ] Error in edit task

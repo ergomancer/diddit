@@ -11,22 +11,15 @@ export default function EditTaskForm({ task }: { task: Task }) {
   const updateTaskWithId = updateTask.bind(null, task.id);
   return (
     <form action={updateTaskWithId as any}>
-      <FormInput
-        type="title"
-        defaultValue={task ? task.title : undefined}
-        error={false}
-      />
+      <FormInput type="title" defaultValue={task.title} error={false} />
       <FormInput
         type="description"
         required={false}
-        defaultValue={task ? task.description : undefined}
+        defaultValue={task.description}
         error={false}
       />
-      <FormSelect
-        type="priority"
-        defaultValue={task ? task.priority : undefined}
-      />
-      <FormSelect type="status" defaultValue={task ? task.status : undefined} />
+      <FormSelect type="priority" defaultValue={task.priority} />
+      <FormSelect type="status" defaultValue={task.status} />
       <div>
         <label
           htmlFor="duedate"
@@ -38,7 +31,7 @@ export default function EditTaskForm({ task }: { task: Task }) {
           id="duedate"
           type="date"
           name="duedate"
-          defaultValue={task ? task.duedate : undefined}
+          defaultValue={new Date(task.duedate).toISOString().split("T")[0]}
           className="rounded-md border text-sm outline-2 py-2.25 px-2 block w-1/3"
         />{" "}
       </div>

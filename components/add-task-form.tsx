@@ -9,10 +9,7 @@ import { Button } from "@/ui/button";
 import FormSelect from "./form-select";
 
 export default function AddTaskForm() {
-  const initialState: TaskFormState = {
-    message: null,
-    errors: {},
-  };
+  const initialState: TaskFormState = {};
   const [state, formAction, isPending] = useActionState(
     createTask,
     initialState,
