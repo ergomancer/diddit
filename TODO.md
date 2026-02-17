@@ -6,12 +6,6 @@
 - [x] Create seed route
 - [x] Execute seeding
 
-## - [ ] Design frontend
-
-- [ ] Discuss features
-- [ ] Design frontend
-- [ ] Get assets
-
 ## - [x] Authentication v1
 
 - [x] Implement auth backend
@@ -33,9 +27,9 @@
 
 ## - [ ] >v1.0
 
-- [ ] Error in edit task
-- [ ] Dashboard screen
-- [ ] Pagination
+- [x] Dashboard screen
+- [ ] Toast Notification
+- [ ] Change Task structure
 
 ## - [ ] Miscellaneous
 

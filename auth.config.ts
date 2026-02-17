@@ -7,7 +7,9 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isSignedIn = !!auth?.user;
-      const isInApp = nextUrl.pathname.startsWith("/app");
+      const isInApp =
+        nextUrl.pathname.startsWith("/app") ||
+        nextUrl.pathname.startsWith("/tasks");
       if (isInApp) {
         if (isSignedIn) {
           return true;
